@@ -1,0 +1,43 @@
+#form {
+    height: 100vh;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    text-align: right;
+}
+
+#Layer_1 {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+#Layer_2 {
+    position: absolute;
+    right: 0;
+    top: -25%;
+}
+
+.rounded-left-bottom {
+    border-bottom-left-radius: 50%;
+}
+
+.error-form {
+    border: 1px solid #ff7672;
+}
+
+.success-form{
+    border: 1px solid #7dffbe;
+}
+
+
+
+
+
+
+
+
+
+
