@@ -57,10 +57,17 @@ class authController extends Controller
             'password' => $request->password
         ];
         if (Auth::attempt($data)) {
-            return "ok";
+            return redirect('panel');
         }
-        return "error";
+        return redirect()->back();
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
+    }
+
 
 }
 

@@ -31,7 +31,7 @@ class RolePermissionSeeder extends Seeder
             'nationalCode' => '1234567891',
             'birthDate' => "1399-09-09",
             'mobile' => '0918',
-            'password' => Hash::make('r$pxS12#M'),
+            'password' => Hash::make('121212'),
         ]);
         $user->assignRole('admin');
 

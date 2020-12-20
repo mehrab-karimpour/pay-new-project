@@ -126,7 +126,7 @@
                             <a id="submit" onclick="submitFormLogin()"
                                type="submit"
                                class="form-control btn btn-primary text-white">
-                                ثبت نام
+                                ورود
                             </a>
                         </div>
                         <br>

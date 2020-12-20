@@ -6,8 +6,52 @@ function ajaxEnd() {
     $('.ajax-loader').fadeOut();
 }
 
-function editUser() {
+function closeItem(item) {
+    $(item).fadeOut();
+    ajaxEnd();
+}
 
+function goEditUser() {
+    let user_id = $("input[name='user_id']").val();
+    let url = '/panel/goEditUser';
+    let token = $("input[name='_token']").val();
+    let form = $('.edit-form').serializeArray();
+    let data = {"_token": token, 'user_id': user_id, 'data': form};
+    $.post(
+        url,
+        data,
+        function (msg) {
+            alert(msg);
+            console.log(msg);
+        }
+    )
+}
+
+function editUser(name, user_id) {
+    let url = '/panel/editUser';
+    let token = $("input[name='_token']").val();
+    let data = {"_token": token, 'user_id': user_id};
+    $.post(
+        url,
+        data,
+        function (msg) {
+            let id = msg['user']['id'];
+            let name = msg['user']['name'];
+            let lastName = msg['user']['lastName'];
+            let nationalCode = msg['user']['nationalCode'];
+            let birthDate = msg['user']['birthDate'];
+            let mobile = msg['user']['mobile'];
+            $("input[name='name']").val(name);
+            $("input[name='lastName']").val(lastName);
+            $("input[name='nationalCode']").val(nationalCode);
+            $("input[name='birthDate']").val(birthDate);
+            $("input[name='mobile']").val(mobile);
+            $("input[name='user_id']").val(id);
+            $('.text-header-edit').text(name + " " + lastName);
+        }
+    )
+    ajaxStart();
+    $('.edit-user-section').fadeIn();
 }
 
 function deleteUser(userName, userId) {

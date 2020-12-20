@@ -20,10 +20,11 @@
                 <td>{{$user->name.' '.$user->lastName}}</td>
                 <td>{{$user->nationalCode}}</td>
                 <td class="edit">
-                    <i class="fa fa-edit ml-2" onclick="editUser()">
+                    <i class="fa fa-edit ml-2" onclick="editUser('{{$user->name.' '.$user->lastName}}',{{$user->id}})">
 
                     </i>
-                    <i class="fa fa-close mr-2" onclick="deleteUser('{{$user->name.' '.$user->lastName}}','{{$user->id}}')">
+                    <i class="fa fa-close mr-2"
+                       onclick="deleteUser('{{$user->name.' '.$user->lastName}}','{{$user->id}}')">
 
                     </i>
                 </td>
@@ -40,6 +41,40 @@
         <button class="btn btn-danger" onclick="notDelete('.resolve-delete-user')">
             خیر
         </button>
+    </div>
+
+    <div class="col-12 col-md-6 edit-user-section">
+        <i class="fa fa-close" onclick="closeItem('.edit-user-section')"></i>
+        <form class="edit-form" method="post">
+            @csrf
+            <h4 class="text-center m-2 text-header-edit"></h4>
+            <br>
+            <div class="col-12 d-block d-md-flex justify-content-around">
+                <input class="form-control col-12 col-md-5" type="text" name="name" placeholder="نام">
+                <input class="form-control col-12 col-md-5" type="text" name="lastName" placeholder="نام خانوادگی">
+            </div>
+            <br>
+            <div class="col-12 d-block d-md-flex justify-content-around">
+
+                <input class="form-control col-12 col-md-5" type="number" name="nationalCode" placeholder="کد ملی">
+                <input class="form-control col-12 col-md-5" type="text" name="birthDate" placeholder="تاریخ تولد">
+            </div>
+            <br>
+            <div class="col-12 d-block d-md-flex justify-content-around">
+
+                <input class="form-control col-12 col-md-5" type="number" name="mobile" placeholder="شماره موبایل">
+                <input class="form-control col-12 col-md-5" type="text" name="password" placeholder="رمز عبور">
+            </div>
+            <input type="hidden" name="user_id">
+            <br><br>
+            <div class="col-12 d-block d-md-flex justify-content-around">
+
+                <a type="submit" class="form-control text-white col-12 col-md-4 btn btn-primary"
+                   onclick="goEditUser()"
+                >ارسال</a>
+            </div>
+
+        </form>
     </div>
 
 
