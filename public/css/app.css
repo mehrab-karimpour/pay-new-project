@@ -28,9 +28,52 @@
     border: 1px solid #ff7672;
 }
 
-.success-form{
+.success-form {
     border: 1px solid #7dffbe;
 }
+
+.show-error {
+    font-size: 14px;
+    font-weight: bold;
+    color: red;
+}
+
+
+.edit i {
+    cursor: pointer;
+}
+
+.ajax-loader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .4);
+    z-index: 3100;
+    display: none;
+}
+
+.resolve-delete-user{
+    background: #fff;
+    z-index: 3200;
+    position: absolute;
+    top: 25vh;
+    border-radius: 15px;
+    padding: 2%;
+    margin: 0 auto;
+    right: 0;
+    left: 0;
+    display: none;
+}
+
+
+
+
+
+
+
 
 
 

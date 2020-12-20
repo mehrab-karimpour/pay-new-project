@@ -83,33 +83,67 @@
             <div class="col-12" id="form">
                 <form method="post" action="" class="col-12 col-md-8 text-center" id="registerForm">
                     @csrf
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <p>  {{$error}}</p>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    @if(session('register-status'))
+                        @if(session('register-status')==='success')
+                            <div class="alert alert-success">
+                                ثبت نام با موفقیت انجام شد
+                            </div>
+                        @endif
+                         @if(session('register-status')==='error')
+                            <div class="alert alert-danger">
+                                ثبت نام انجام نشد لطفا دوباره تلاش کنید
+                            </div>
+                        @endif
+
+                    @endif
+
                     <div class="form-group col-12 row m-0 m-auto">
                         <div class="col-12 col-md-6 bg-white">
                             <label for="name"></label>
                             <input type="text" id="name" name="name" class="form-control" placeholder="نام">
+                            <p class="show-error"></p>
                         </div>
                         <div class="col-12 col-md-6 bg-white">
                             <label for="lastName"></label>
-                            <input type="text" id="lastName" name="lastName" class="form-control" placeholder="نام خانوادگی">
+                            <input type="text" id="lastName" name="lastName" class="form-control"
+                                   placeholder="نام خانوادگی">
+                            <p class="show-error"></p>
                         </div>
                         <br>
                         <div class="col-12 col-md-6 bg-white">
                             <label for="nationalCode"></label>
-                            <input type="number" id="nationalCode" name="nationalCode" class="form-control" placeholder="کد ملی">
+                            <input type="number" id="nationalCode" name="nationalCode" class="form-control"
+                                   placeholder="کد ملی">
+                            <p class="show-error"></p>
+
                         </div>
                         <div class="col-12 col-md-6 bg-white">
                             <label for="birthDate"></label>
-                            <input type="text" id="birthDate" name="birthDate" class="form-control" placeholder="تاریخ تولد">
+                            <input type="text" id="birthDate" name="birthDate" class="form-control"
+                                   placeholder="تاریخ تولد">
+                            <p class="show-error"></p>
                         </div>
                         <br>
                         <div class="col-12 col-md-6 bg-white">
                             <label for="mobile"></label>
-                            <input type="number" id="mobile" name="mobile" class="form-control" placeholder="شماره تلفن">
+                            <input type="number" id="mobile" name="mobile" class="form-control"
+                                   placeholder="شماره تلفن">
+                            <p class="show-error"></p>
                         </div>
                         <br>
                         <div class="col-12 col-md-6 bg-white rounded-left-bottom">
-                            <label for="mobile"></label>
-                            <input type="password" id="mobile" name="mobile" class="form-control" placeholder="رمز عبور">
+                            <label for="password"></label>
+                            <input type="password" id="password" name="password" class="form-control"
+                                   placeholder="رمز عبور">
+                            <p class="show-error"></p>
                         </div>
                         <div class="col-8 col-md-4">
                             <label for="submit"></label>

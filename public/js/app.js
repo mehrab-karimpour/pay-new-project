@@ -1,4 +1,50 @@
+function ajaxStart() {
+    $('.ajax-loader').fadeIn();
+}
+
+function ajaxEnd() {
+    $('.ajax-loader').fadeOut();
+}
+
+function editUser() {
+
+}
+
+function deleteUser(userName, userId) {
+
+    ajaxStart();
+    $(".resolve-delete-user>h4").text("ایا میخواهید کاربر " + userName + " را حذف کنید ؟ ");
+    $(".resolve-delete-user>h4").attr("data-id", userId);
+
+    $('.resolve-delete-user').fadeIn();
+}
+
+function deleteUserOk() {
+    ajaxStart();
+    let userId = $(".resolve-delete-user>h4").attr('data-id');
+    let token = $("input[name='_token']").val();
+    let url = "/panel/deleteUser";
+    let data = {'_token': token, 'user_id': userId};
+    $.post(
+        url,
+        data,
+        function (msg) {
+            if (msg['status'] === 'success') {
+                $('.table-dark').prepend("<div class='alert alert-success'>حذف با موفقیت انجام شد </div>");
+            }
+            window.location.reload();
+        }
+    )
+
+}
+
+function notDelete(itemHide) {
+    $(itemHide).fadeOut();
+    ajaxEnd()
+}
+
 function addError(input) {
+    input.removeClass('success-form');
     input.addClass('error-form');
 }
 
@@ -7,37 +53,46 @@ function addSuccess(input) {
     input.addClass('success-form');
 }
 
-function validate(paramsForm, requireForm) {
+function checkPassword() {
+    let password = $("input[name='password']");
+
+    let lengthPassword = password.val().length;
+
+    if (lengthPassword < 6 || lengthPassword > 12) {
+        addError(password);
+        password.closest('div').find("p").text("رمز عبور باید حداقل 6 و حداکثر 12 کاراکتر باشد ");
+        return true;
+    } else {
+        addSuccess(password);
+        password.closest('div').find("p").text("");
+        return false;
+    }
+
+}
+
+function validate(paramsForm = [], requireForm = {}, messageForm = {}) {
     let valInput;
     for (let i = 0; i < paramsForm.length; i++) {
         let input = $("input[name='" + paramsForm[i] + "']");
         valInput = input.val();
 
+        for (let p = 0; p < paramsForm.length; p++) {
+            let inp = $("input[name='" + paramsForm[p] + "']");
+            let elemError = inp.closest('div').find('p');
+            if (inp.hasClass('error-form')) {
+                elemError.text(messageForm[paramsForm[p]]);
+            } else {
+                elemError.text('');
+            }
+        }
+
         if (requireForm[paramsForm[i]] !== 'required') {
             if (typeof requireForm[paramsForm[i]] === "number") {
+
                 if (valInput.trim() === '' || valInput.length !== requireForm[paramsForm[i]]) {
                     addError(input);
                 } else {
                     addSuccess(input);
-                }
-            } else {
-                let items = requireForm[paramsForm[i]].split("|");
-                for (let j = 0; j < items.length; j++) {
-                    let oneItem = items[j].split(":");
-                    if (oneItem[0] === 'max') {
-                        if (valInput.length > oneItem[1]) {
-                            addError(input);
-                        } else {
-                            addSuccess(input);
-                        }
-
-                    } else if (oneItem[0] === 'min') {
-                        if (valInput.length < oneItem[1]) {
-                            addError(input);
-                        } else {
-                            addSuccess(input);
-                        }
-                    }
                 }
             }
         } else {
@@ -48,10 +103,12 @@ function validate(paramsForm, requireForm) {
             }
         }
     }
+
     return !$("input").hasClass('error-form');
 }
 
 $('input').change(function () {
+    checkPassword();
     checkForm();
 })
 
@@ -62,7 +119,8 @@ function checkForm() {
         'mobile',
         'nationalCode',
         'birthDate',
-        'password'
+        ''
+
     ];
     let requireForm = {
         'name': 'required',
@@ -70,13 +128,41 @@ function checkForm() {
         'mobile': 11,
         'nationalCode': 10,
         'birthDate': 'required',
-        'password': 'max:12|min:6',
-    }
-    return validate(paramsForm, requireForm);
+        '': ''
+    };
+    let messageForm = {
+        'name': 'لطفا  نام را وارد کنید',
+        'lastName': 'لطفا  نام خانوادگی را وارد کنید',
+        'mobile': 'لطفا  موبایل را وارد کنید',
+        'nationalCode': 'لطفا  کد ملی را وارد کنید',
+        'birthDate': 'لطفا  تاریخ تولد را وارد کنید',
+        '': ''
+    };
+    checkPassword();
+    return validate(paramsForm, requireForm, messageForm);
 }
 
 function submitForm() {
-    if (checkForm()) {
+    if (checkForm() && checkPassword) {
+        $('#registerForm').submit();
+    } else {
+
+    }
+}
+
+function submitFormLogin() {
+    let paramsForm = [
+        'nationalCode',
+        ''
+    ];
+    let requireForm = {
+        'nationalCode': 10,
+    };
+    let messageForm = {
+        'nationalCode': 'لطفا  کد ملی را وارد کنید',
+    };
+
+    if (validate(paramsForm, requireForm, messageForm)) {
         $('#registerForm').submit();
     }
 }
