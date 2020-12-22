@@ -146,7 +146,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12" id="form">
-                            <form method="post" action="" class="col-12 col-md-8 text-center" id="registerForm">
+                            <form method="post" action="{{route('pay')}}" class="col-12 col-md-8 text-center" id="registerForm">
                                 @csrf
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
@@ -194,8 +194,8 @@
                                     </div>
                                     <div class="col-12 col-md-6 bg-white">
                                         <label for="birthDate"></label>
-                                        <input type="text" id="birthDate" name="birthDate" class="input-sp p-2"
-                                               placeholder="تاریخ تولد">
+                                        <input type="text"  id="birthDate" name="birthDate" class="input-sp birthDate p-2"
+                                               placeholder="تاریخ تولد" autocomplete="off">
                                         <p class="show-error"></p>
                                     </div>
                                     <br>
@@ -211,11 +211,11 @@
                                     </div>
                                     <div class="col-8 col-md-4">
                                         <label for="submit"></label>
-                                        <a id="submit" onclick="submitForm()"
+                                        <button id="submit" onclick="submitForm()"
                                            type="submit"
                                            class="form-control btn btn-info text-white">
-                                            ثبت نام
-                                        </a>
+                                            ذخیره
+                                        </button>
                                     </div>
                                     <br>
                                 </div>

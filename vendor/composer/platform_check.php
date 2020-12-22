@@ -9,6 +9,7 @@ if (!(PHP_VERSION_ID >= 70300)) {
 }
 
 $missingExtensions = array();
+extension_loaded('curl') || $missingExtensions[] = 'curl';
 extension_loaded('dom') || $missingExtensions[] = 'dom';
 extension_loaded('fileinfo') || $missingExtensions[] = 'fileinfo';
 extension_loaded('filter') || $missingExtensions[] = 'filter';
@@ -18,6 +19,7 @@ extension_loaded('mbstring') || $missingExtensions[] = 'mbstring';
 extension_loaded('openssl') || $missingExtensions[] = 'openssl';
 extension_loaded('pcre') || $missingExtensions[] = 'pcre';
 extension_loaded('phar') || $missingExtensions[] = 'phar';
+extension_loaded('soap') || $missingExtensions[] = 'soap';
 extension_loaded('tokenizer') || $missingExtensions[] = 'tokenizer';
 extension_loaded('xml') || $missingExtensions[] = 'xml';
 extension_loaded('xmlwriter') || $missingExtensions[] = 'xmlwriter';

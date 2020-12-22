@@ -19,12 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/', [indexController::class, 'index']);
+Route::post('/messageHandle', [indexController::class, 'messageHandle'])->name('messageHandle');
 
-
-
-Route::get('/',[indexController::class,'index']);
-Route::post('/',[indexController::class,'messageHandle'])->name('messageHandle');
-
+Route::post('pay', [indexController::class, 'pay'])->name('pay');
 
 Route::get('/register', [authController::class, 'register']);
 Route::post('/register', [authController::class, 'newRegister']);

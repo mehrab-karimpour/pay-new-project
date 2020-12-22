@@ -140,7 +140,7 @@ return [
          * Laravel Framework Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
-
+        Larabookir\Gateway\GatewayServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -191,6 +191,8 @@ return [
     */
 
     'aliases' => [
+
+        'Gateway' => \Larabookir\Gateway\Gateway::class,
 
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
