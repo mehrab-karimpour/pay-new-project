@@ -3,6 +3,8 @@
 use App\Http\Controllers\authController;
 use App\Http\Controllers\indexController;
 use App\Http\Controllers\panelController;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +18,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
+
 Route::get('/',[indexController::class,'index']);
+Route::post('/',[indexController::class,'messageHandle'])->name('messageHandle');
+
+
 Route::get('/register', [authController::class, 'register']);
 Route::post('/register', [authController::class, 'newRegister']);
 Route::get('/login', [authController::class, 'loginForm']);

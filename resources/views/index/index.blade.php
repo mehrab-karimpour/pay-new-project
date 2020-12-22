@@ -142,6 +142,7 @@
                     </linearGradient>
                     <circle fill="url(#SVGID_5_)" cx="435.095" cy="184.986" r="63.504"></circle>
 </svg>
+
                 <div class="container">
                     <div class="row">
                         <div class="col-12" id="form">
@@ -169,38 +170,38 @@
 
                                 @endif
                                 <div class="col-12">
-                                    <h5 class="text-center">برای دریافت کارت فرم زیر را پر کنید</h5>
+                                    <h5 class="text-center text-info mb-4">برای دریافت کارت فرم زیر را پر کنید</h5>
                                 </div>
                                 <div class="form-group col-12 row m-0 m-auto" id="form-pay">
                                     <div class="col-12 col-md-6 bg-white">
                                         <label for="name"></label>
-                                        <input type="text" id="name" name="name" class="form-control" placeholder="نام">
+                                        <input type="text" id="name" name="name" class="input-sp p-2" placeholder="نام">
                                         <p class="show-error"></p>
                                     </div>
                                     <div class="col-12 col-md-6 bg-white">
                                         <label for="lastName"></label>
-                                        <input type="text" id="lastName" name="lastName" class="form-control"
+                                        <input type="text" id="lastName" name="lastName" class="input-sp p-2"
                                                placeholder="نام خانوادگی">
                                         <p class="show-error"></p>
                                     </div>
                                     <br>
                                     <div class="col-12 col-md-6 bg-white">
                                         <label for="nationalCode"></label>
-                                        <input type="number" id="nationalCode" name="nationalCode" class="form-control"
+                                        <input type="number" id="nationalCode" name="nationalCode" class="input-sp p-2"
                                                placeholder="کد ملی">
                                         <p class="show-error"></p>
 
                                     </div>
                                     <div class="col-12 col-md-6 bg-white">
                                         <label for="birthDate"></label>
-                                        <input type="text" id="birthDate" name="birthDate" class="form-control"
+                                        <input type="text" id="birthDate" name="birthDate" class="input-sp p-2"
                                                placeholder="تاریخ تولد">
                                         <p class="show-error"></p>
                                     </div>
                                     <br>
                                     <div class="col-12 col-md-6 bg-white">
                                         <label for="mobile"></label>
-                                        <input type="number" id="mobile" name="mobile" class="form-control"
+                                        <input type="number" id="mobile" name="mobile" class="input-sp p-2"
                                                placeholder="شماره تلفن">
                                         <p class="show-error"></p>
                                     </div>
@@ -212,7 +213,7 @@
                                         <label for="submit"></label>
                                         <a id="submit" onclick="submitForm()"
                                            type="submit"
-                                           class="form-control btn btn-primary text-white">
+                                           class="form-control btn btn-info text-white">
                                             ثبت نام
                                         </a>
                                     </div>
@@ -228,26 +229,27 @@
 
     <section class="container mb-5 p-2" id="send-message">
         <div class="row">
-            <div class="col-8">
+            <div class="col-12 col-md-8">
                 <br>
                 <div class="btn btn-secondary"><strong>ورود و تکمیل اطلاعات</strong></div>
                 <p class="text-center p-3">در روزهایی که باید فاصله‌گذاری اجتماعی را رعایت کنیم و حتی در آینده‌ای که
-                    سلامتی باز هم به جهانمون برگردد، با سفارش و ارسال پیام تبریک و تسلیت از طریق پیام همدلی محک به صورت
-                    آنلاین در روزهای شیرین و تلخ، همراهی با عزیزانمان را به نجات زندگی کودکان مبتلا به سرطان محک پیوند
+                    سلامتی باز هم به جهانمون برگردد، با سفارش و ارسال پیام تبریک و تسلیت از طریق پیام همدلی به صورت
+                    آنلاین در روزهای شیرین و تلخ، همراهی با عزیزانمان را به نجات زندگی کودکان مبتلا به سرطان پیوند
                     بزنیم. (ارسال پیام از طریق ایمیل، واتساپ و پیامک) با پرداخت مبلغ ۱۰۰ هزار تومان و ارسال پیام همدلی،
                     روزهای شاد زندگی دوستان و عزیزانتان را با کمک به ادامه زندگی کودکان مبتلا به سرطان پیوند بزنید و
                     شادی شان را دوچندان کنید</p>
             </div>
-            <form class="col-12">
+            <form method="post" action="{{route('messageHandle')}}" class="col-12">
+                @csrf
                 <div class="col-12">
                     <h5 class="text-center">خطاب به:*</h5>
                     <h6 class="text-center"><small class="col-12 text-center"><strong>برای مثال: سرکار خانم مریم محمدی
                                 گرامی/ جناب آقای علی
                                 حسینی عزیز/ خانواده محترم حسینی/
                                 دوست عزیزم علی حسینی</strong></small></h6>
-                    <input class="input-sp" id="audience" name="audience" type="text"
+                    <input class="input-sp" id="message_to_name" name="message_to_name" type="text"
                            placeholder="نام و نام خانوادگی گیرنده پیام همدلی را وارد کنید ">
-                    <label for="audience"></label>
+                    <label for="message_to_name"></label>
                     <h5 class="text-center">از طرف:*</h5>
                     <h6 class="text-center">
                         <small class="col-12 text-center">
@@ -257,26 +259,25 @@
                             </strong>
                         </small>
                     </h6>
-                    <input class="input-sp" id="audience" name="audience" type="text"
+                    <input class="input-sp" id="message_of_name" name="message_of_name" type="text"
                            placeholder="نام و نام خانوادگی فرستنده  پیام همدلی را وارد کنید ">
-                    <label for="audience"></label>
+                    <label for="message_of_name"></label>
                     <h5 class="text-center">متن پیام :</h5>
                     <div class="col-12 text-right">
-                        <button class="btn btn-secondary rounded">
+                        <div onclick="enableText()" class="btn btn-secondary rounded">
                             ویرایش
-                        </button>
+                        </div>
                     </div>
 
-                    <textarea disabled class="input-sp text-right" id="audience" name="audience" type="text">
-                        روزهاى شاد زندگی شما مایه خوشحالی من/ماست. به همین خاطر، حالا که برای حفظ سلامتی مان، نمی توانیم دور هم جمع شویم، با فرستادن این پیام از سوى محک مى خواهيم همراهی خود در لحظات شاد زندگی تان را با شوق و اميد سلامتى کودکان مبتلا به سرطان پیوند بزنيم و با تامین هزینه دارو و درمان این قهرمانان کوچک سهیم شویم. تبریک ما را از طریق پیام محک پذیرا باشید. به امید آنکه به زودی و با گذر از روزهاى سخت شيوع كرونا، به میمنت این اتفاق نیک دیداری تازه کنیم. باور کنید که دست هایمان از شما دور و قلب هایمان به شما نزدیک است.
+                    <textarea  class="input-sp text-right" id="text" name="text" type="text" disabled> روزهاى شاد زندگی شما مایه خوشحالی من/ماست. به همین خاطر، حالا که برای حفظ سلامتی مان، نمی توانیم دور هم جمع شویم، با فرستادن این پیام از سوى   مى خواهيم همراهی خود در لحظات شاد زندگی تان را با شوق و اميد سلامتى کودکان مبتلا به سرطان پیوند بزنيم و با تامین هزینه دارو و درمان این قهرمانان کوچک سهیم شویم. تبریک ما را از طریق پیام   پذیرا باشید. به امید آنکه به زودی و با گذر از روزهاى سخت شيوع كرونا، به میمنت این اتفاق نیک دیداری تازه کنیم. باور کنید که دست هایمان از شما دور و قلب هایمان به شما نزدیک است.
                     </textarea>
-                    <label for="audience"></label>
+                    <label for="text"></label>
 
                     <h5 class="text-center">شماره تلفن همراه نیکوکار سفارش دهنده</h5>
 
-                    <input class="input-sp direction-rtl text-center" id="audience" name="audience" type="number"
+                    <input class="input-sp direction-rtl text-center" id="mobile_of" name="mobile_of" type="number"
                            placeholder="...0918">
-                    <label for="audience"></label>
+                    <label for="mobile_of"></label>
                 </div>
                 <hr>
                 <div class="col-12">
@@ -296,19 +297,63 @@
                             </strong>
                         </small>
                     </h6>
+                    <input class="input-sp text-center" id="email_of" name="email_of" type="text"
+                           placeholder="example@exmp.com">
+                    <label for="email_of"></label>
+                </div>
+                <h6 class="mb-2 mt-2 text-center">آدرس ایمیل گیرنده/ گیرندگان پیام همدلی- حداکثر ۱۰ آدرس ایمیل</h6>
+                <div class="row email-parent">
+                    <div class="col-12 col-md-6 email-item">
+                        <label for="email_to"></label>
+                        <input class="input-sp text-center" id="email_to" name="email_to[]" type="text"
+                               placeholder="example@exmp.com">
+                    </div>
+                    <div class="col-12 col-md-6 email-item">
+                        <label for="email_to"></label>
+                        <input class="input-sp text-center" id="email_to" name="email_to[]" type="text"
+                               placeholder="example@exmp.com">
+                    </div>
+                </div>
+                <div class="col-12 text-right mt-3">
+                    <i onclick="emailAdd()" class="fas btn btn-primary mr-5 fa-plus-square"></i>
+                </div>
+                <hr>
+
+
+                <div class="col-12">
+                    <div class="form-check text-center">
+                        <input type="checkbox" class="form-check-input ml-5" id="exampleCheck1">
+                        <label class="form-check-label mr-5" for="exampleCheck1"><strong>از طریق پیامک</strong></label>
+                    </div>
+                    <br>
+
+
                     <input class="input-sp text-center" id="audience" name="audience" type="text"
                            placeholder="example@exmp.com">
                     <label for="audience"></label>
                 </div>
-                <div class="col-12 bg-primary d-block d-md-flex justify-content-around">
+                <h6 class="mb-2 mt-2 text-center">شماره تلفن همراه گیرنده پیام - حداکثر ۲ شماره تماس</h6>
+                <div class="row">
                     <div class="col-12 col-md-6">
-                        <label>
-                            <input class="input-sp col-12 text-center" id="audience" name="audience" type="text"
-                                   placeholder="example@exmp.com">
-                        </label>
+                        <label for="mobile_to"></label>
+                        <input class="input-sp text-center" id="mobile_to" name="mobile_to[]" type="text"
+                               placeholder="-- -- ---  --09 ">
                     </div>
-                    <div class="col-12 col-md-6"></div>
+                    <div class="col-12 col-md-6">
+                        <label for="mobile_to"></label>
+                        <input class="input-sp text-center" id="mobile_to" name="mobile_to[]" type="text"
+                               placeholder="-- -- ---  --09 ">
+                    </div>
                 </div>
+                <hr>
+
+                <div class="row">
+                    <div class="col-12 col-md-6 mb-4">
+                        <button class="btn btn-info">ادامه و پرداخت</button>
+                    </div>
+                </div>
+
+
             </form>
         </div>
     </section>

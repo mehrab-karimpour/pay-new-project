@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'shabnam';
+    src: url('/css/font/Shabnam.eot'); /* IE9 Compat Modes */
+    src: url('/css/font/Shabnam.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/css/font/Shabnam.woff2') format('woff2'), /* Super Modern Browsers */ url('/css/font/Shabnam.woff') format('woff'), /* Pretty Modern Browsers */ url('/css/font/Shabnam.ttf') format('truetype'), /* Safari, Android, iOS */ url('/css/font/Shabnam.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+div, a, span, textarea, input, p, h1, h2, h3, h4, h5, h6 {
+    font-family: shabnam;
+}
+
 #form {
     height: 100vh;
     overflow: auto;
@@ -17,7 +27,8 @@
 #Layer_2 {
     position: absolute;
     right: 0;
-    top: -25%;
+    transform: scale(.7);
+    top: -6%;
 }
 
 .rounded-left-bottom {
@@ -149,7 +160,8 @@ input[type=number] {
 }
 
 .footer {
-    height: 65vh;
+    min-height: 65vh;
+    height: auto;
     background: url(/image/footer.jpg) no-repeat center;
     background-size: cover;
 }
@@ -171,13 +183,13 @@ input[type=number] {
 
 #form-pay {
     border-radius: 16px;
-    box-shadow: 0 0 360px .5px #4a9e89;
+    box-shadow: 0 0 360px .5px #444444;
     padding-bottom: 1%;
 }
 
 .input-sp {
     border: 0;
-    background: #fff9e0;
+    background: #eee;
     border-radius: 14px;
     width: 100%;
     font-size: 14px;
@@ -189,7 +201,7 @@ input[type=number] {
     outline: none;
 }
 
-textarea[name='audience'] {
+textarea[name='text'] {
     width: 100%;
     min-width: 100%;
     max-width: 100%;
@@ -202,7 +214,19 @@ textarea[name='audience'] {
     line-height: 27px;
 }
 
+#sms-success, #sms-error {
+    height: 100vh;
+    padding-top: 34vh;
+    align-items: center;
+}
 
+.back_success {
+    background: #eeffea;
+}
+
+.back_error {
+    background: #ffefdf;
+}
 
 
 

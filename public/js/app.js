@@ -1,3 +1,16 @@
+function enableText() {
+    $('#text').removeAttr("disabled");
+    $('#text').focus();
+
+}
+
+function emailAdd() {
+    let emailItemCount = $('.email-item').length;
+    if (emailItemCount < 8)
+        $('.email-parent').append("<div class='col-12 col-md-6 mt-3 email-item'><label for='email_to'></label><input class='input-sp text-center' id='email_to' name='email_to[]' type='text' placeholder='example@exmp.com'></div>")
+}
+
+
 function ajaxStart() {
     $('.ajax-loader').fadeIn();
 }
