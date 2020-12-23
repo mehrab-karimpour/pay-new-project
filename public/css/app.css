@@ -8,6 +8,7 @@ div, a, span, textarea, input, p, h1, h2, h3, h4, h5, h6 {
     font-family: shabnam;
 }
 
+
 #form {
     height: 100vh;
     overflow: auto;
@@ -53,6 +54,7 @@ div, a, span, textarea, input, p, h1, h2, h3, h4, h5, h6 {
 .edit i {
     cursor: pointer;
 }
+
 
 .ajax-loader {
     position: absolute;
@@ -101,7 +103,6 @@ div, a, span, textarea, input, p, h1, h2, h3, h4, h5, h6 {
 
 .header {
     position: absolute;
-    top: 0;
 }
 
 .header > .nav-top {
@@ -125,6 +126,7 @@ div, a, span, textarea, input, p, h1, h2, h3, h4, h5, h6 {
     height: 100vh;
     background-size: cover;
 }
+
 
 .nav-bottom {
     background-image: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .2));
@@ -228,8 +230,15 @@ textarea[name='text'] {
     background: #ffefdf;
 }
 
+.cart-parent {
+    align-items: center;
+    height: 100vh;
+}
 
-
+#cart {
+    width: 85mm;
+    height: 54mm;
+}
 
 
 

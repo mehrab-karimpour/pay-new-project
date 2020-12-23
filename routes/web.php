@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\authController;
 use App\Http\Controllers\indexController;
+use App\Http\Controllers\messageController;
 use App\Http\Controllers\panelController;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
@@ -18,11 +19,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/send', [indexController::class, 'mail']);
+
 
 Route::get('/', [indexController::class, 'index']);
-Route::post('/messageHandle', [indexController::class, 'messageHandle'])->name('messageHandle');
 
+
+//          pay message
+Route::post('/messageSend',[messageController::class,'messagePay'])->name('message.send');
+
+
+// pay
 Route::post('pay', [indexController::class, 'pay'])->name('pay');
+Route::post('/verify', [indexController::class, 'verify'])->name('verify');
+
 
 Route::get('/register', [authController::class, 'register']);
 Route::post('/register', [authController::class, 'newRegister']);

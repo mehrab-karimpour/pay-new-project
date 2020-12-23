@@ -194,8 +194,8 @@
                                     </div>
                                     <div class="col-12 col-md-6 bg-white">
                                         <label for="birthDate"></label>
-                                        <input type="text"  id="birthDate" name="birthDate" class="input-sp birthDate p-2"
-                                               placeholder="تاریخ تولد" autocomplete="off">
+                                        <input class="input-sp birthDate p-2" type="text"  id="birthDate" name="birthDate"
+                                               placeholder="تاریخ تولد" autocomplete="off" >
                                         <p class="show-error"></p>
                                     </div>
                                     <br>
@@ -239,7 +239,7 @@
                     روزهای شاد زندگی دوستان و عزیزانتان را با کمک به ادامه زندگی کودکان مبتلا به سرطان پیوند بزنید و
                     شادی شان را دوچندان کنید</p>
             </div>
-            <form method="post" action="{{route('messageHandle')}}" class="col-12">
+            <form method="post" action="{{route('message.send')}}" class="col-12">
                 @csrf
                 <div class="col-12">
                     <h5 class="text-center">خطاب به:*</h5>
@@ -298,7 +298,7 @@
                         </small>
                     </h6>
                     <input class="input-sp text-center" id="email_of" name="email_of" type="text"
-                           placeholder="example@exmp.com">
+                           placeholder="ادرس ایمیل خود را وارد کنید ">
                     <label for="email_of"></label>
                 </div>
                 <h6 class="mb-2 mt-2 text-center">آدرس ایمیل گیرنده/ گیرندگان پیام همدلی- حداکثر ۱۰ آدرس ایمیل</h6>
@@ -329,7 +329,7 @@
 
 
                     <input class="input-sp text-center" id="audience" name="audience" type="text"
-                           placeholder="example@exmp.com">
+                           placeholder="شماره تلفن خود را وارد کنید ">
                     <label for="audience"></label>
                 </div>
                 <h6 class="mb-2 mt-2 text-center">شماره تلفن همراه گیرنده پیام - حداکثر ۲ شماره تماس</h6>

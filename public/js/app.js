@@ -1,12 +1,14 @@
-$(document).ready(function () {
-    $("#birthDate").persianDatepicker({
-        initialValue: false,
-        initialValueType: 'gregorian',
-        altFormat:"Y-m-d",
-    });
+$('#birthDate').persianDatepicker({
+    initialValueType: 'gregorian',
+    responsive: true,
+    autoClose: true,
+    format: 'YYYY-MM-DD',
+    "toolbox": {
+        "calendarSwitch": {
+            "enabled": false
+        }
+    },
 });
-
-
 function enableText() {
     $('#text').removeAttr("disabled");
     $('#text').focus();

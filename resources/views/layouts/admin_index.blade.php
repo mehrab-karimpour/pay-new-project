@@ -147,7 +147,7 @@
                             <a href="{{route('panel.changeAmount')}}" class="nav-link">
                                 <i class="nav-icon fa fa-dollar"></i>
                                 <p>
-                                    قیمت کارت
+                                    قیمت ها
                                 </p>
                             </a>
                         </li>

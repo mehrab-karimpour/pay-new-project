@@ -7,7 +7,9 @@ use App\Models\amount;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use function GuzzleHttp\Promise\all;
 
@@ -23,23 +25,36 @@ class panelController extends Controller
 
     public function changeAmountCart()
     {
-        $amount = @number_format(amount::first()->amount);
+        $amountCart = amount::where('title', 'amount-cart')->first();
+        $amountMessage = amount::where('title', 'amount-message')->first();
 
         $active = 'amount';
-        return view('admin.amount', compact('active', 'amount'));
+        return view('admin.amount', compact('active', 'amountCart', 'amountMessage'));
     }
 
     public function editAmount(Request $request)
     {
+
         $this->validate($request, [
             'amount' => 'required|numeric'
         ]);
 
-        $amount = amount::firstOrNew([
-            'title' => 'amount-cart',
-        ]);
-        $amount->amount = $request->amount;
-        $amount->save();
+
+        $amount = DB::table('amounts')->where('title', '=', $request->type)->count();
+
+        if ($amount < 1) {
+            DB::insert('insert into amounts (title,amount) VALUES (?,?)', [$request->type, $request->amount]);
+            echo "ok";
+        } else {
+            try {
+                DB::table('amounts')->where('title', '=', $request->type)->update([
+                    'amount' => $request->amount,
+                ]);
+            } catch (\Exception $e) {
+                Log::error($e);
+            }
+        }
+
         return back();
     }
 
@@ -68,7 +83,7 @@ class panelController extends Controller
         $mobile = $request->data[5]['value'];
         $password = $request->data[6]['value'];
 
-        if ($password==='') {
+        if ($password === '') {
             $user = User::where('id', '=', $request->user_id)->update([
                 'name' => $name,
                 'lastName' => $lastName,
@@ -76,7 +91,7 @@ class panelController extends Controller
                 'birthDate' => $birthDate,
                 'mobile' => $mobile,
             ]);
-        }else{
+        } else {
             $user = User::where('id', '=', $request->user_id)->update([
                 'name' => $name,
                 'lastName' => $lastName,
