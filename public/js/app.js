@@ -1,3 +1,9 @@
+function proccessForm() {
+    $("textarea[name='text']").removeAttr('disabled');
+    $('form').submit();
+}
+
+
 $('#birthDate').persianDatepicker({
     initialValueType: 'gregorian',
     responsive: true,
@@ -9,6 +15,8 @@ $('#birthDate').persianDatepicker({
         }
     },
 });
+
+
 function enableText() {
     $('#text').removeAttr("disabled");
     $('#text').focus();

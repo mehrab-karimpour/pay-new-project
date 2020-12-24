@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
 use GuzzleHttp\Client;
@@ -22,6 +23,18 @@ class indexController extends Controller
     protected $terminalId = '**************';
     protected $userName = '**************';
     protected $userPassword = '**************';
+
+
+    public function mai()
+    {
+        $user = User::findOrFail(1);
+        Mail::send('emails.register', ['user' => $user], function ($m) use ($user) {
+            $m->from('info@alefyar.com', 'الف یار');
+
+            $m->to($user->email, $user->name)->subject('اطلاعات ثبت نام شما');
+        });
+    }
+
 
     public function mail()
     {
@@ -47,6 +60,18 @@ class indexController extends Controller
 
     public function pay(Request $request)
     {
+
+        $validator = validator($request->all(), [
+            'name' => 'required',
+            'lastName' => 'required|string',
+            'nationalCode' => 'required|numeric',
+            'birthDate' => 'required|string',
+            'mobile' => 'required|string',
+        ]);
+        if ($validator->fails())
+            return redirect()->back()->withErrors($validator->errors())->with('error', 'cart');
+
+
         $this->data = $request;
 
 
@@ -62,7 +87,7 @@ class indexController extends Controller
                 DB::insert("insert into orders (name,lastName,nationalCode,birthDate,mobile,amount,status)
                     VALUES (?,?,?,?,?,?,?)", [$name, $lastName, $nationalCode, $birthDate, $mobile, $amount, $status]);
                 $this->order = DB::table('orders')->orderByDesc('id')->first();
-                $this->amount = DB::table('amounts')->where('title','=','amount-cart')->first();
+                $this->amount = DB::table('amounts')->where('title', '=', 'amount-cart')->get()->first();
                 \App\Models\Transaction::create([
                     'order_id' => $this->order->id,
                     'status' => 2,
@@ -195,11 +220,11 @@ class indexController extends Controller
             else
                 return false;
         } catch (\Throwable $e) {
+            Log::error($e);
             dd($e);
             return false;
         }
     }
-
 
 
     protected function dateFormatter($persianDate)

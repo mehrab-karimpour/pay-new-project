@@ -24,19 +24,17 @@ Route::get('/send', [indexController::class, 'mail']);
 
 Route::get('/', [indexController::class, 'index']);
 
-
 //          pay message
-Route::post('/messageSend',[messageController::class,'messagePay'])->name('message.send');
-
+Route::post('/messageSend', [messageController::class, 'messagePay'])->name('message.send');
 
 // pay
 Route::post('pay', [indexController::class, 'pay'])->name('pay');
 Route::post('/verify', [indexController::class, 'verify'])->name('verify');
 
 
-Route::get('/register', [authController::class, 'register']);
+Route::get('/register', [authController::class, 'register'])->name('register');
 Route::post('/register', [authController::class, 'newRegister']);
-Route::get('/login', [authController::class, 'loginForm']);
+Route::get('/login', [authController::class, 'loginForm'])->name('login');
 Route::post('/login', [authController::class, 'login']);
 Route::get('/logout', [authController::class, 'logout'])->name('logout');
 

@@ -9,11 +9,11 @@
                 <i class="fab mr-3 fa-telegram"></i>
             </div>
             <div class="col-12 col-md-4 text-right">
-                <a href="" class="mr-2">
+                <a href="{{route('register')}}" class="mr-2">
                     ثبت نام
                     <i class="fas fa-registered m-2"></i>
                 </a>
-                <a href="" class="ml-2">
+                <a href="{{route('login')}}" class="ml-2">
                     ورور
                     <i class="fas fa-user m-2"></i>
                 </a>
@@ -146,29 +146,20 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12" id="form">
-                            <form method="post" action="{{route('pay')}}" class="col-12 col-md-8 text-center" id="registerForm">
+                            <form method="post" action="{{route('pay')}}" class="col-12 col-md-8 text-center"
+                                  id="registerForm">
                                 @csrf
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        @foreach ($errors->all() as $error)
-                                            <p>  {{$error}}</p>
-                                        @endforeach
-                                    </div>
-                                @endif
-
-                                @if(session('register-status'))
-                                    @if(session('register-status')==='success')
-                                        <div class="alert alert-success">
-                                            ثبت نام با موفقیت انجام شد
-                                        </div>
-                                    @endif
-                                    @if(session('register-status')==='error')
+                                @if(session('error') and session('error')==='cart')
+                                    @if ($errors->any())
                                         <div class="alert alert-danger">
-                                            ثبت نام انجام نشد لطفا دوباره تلاش کنید
+                                            @foreach ($errors->all() as $error)
+                                                <p>  {{$error}}</p>
+                                            @endforeach
                                         </div>
                                     @endif
-
                                 @endif
+
+
                                 <div class="col-12">
                                     <h5 class="text-center text-info mb-4">برای دریافت کارت فرم زیر را پر کنید</h5>
                                 </div>
@@ -194,8 +185,9 @@
                                     </div>
                                     <div class="col-12 col-md-6 bg-white">
                                         <label for="birthDate"></label>
-                                        <input class="input-sp birthDate p-2" type="text"  id="birthDate" name="birthDate"
-                                               placeholder="تاریخ تولد" autocomplete="off" >
+                                        <input class="input-sp birthDate p-2" type="text" id="birthDate"
+                                               name="birthDate"
+                                               placeholder="تاریخ تولد" autocomplete="off">
                                         <p class="show-error"></p>
                                     </div>
                                     <br>
@@ -212,8 +204,8 @@
                                     <div class="col-8 col-md-4">
                                         <label for="submit"></label>
                                         <button id="submit" onclick="submitForm()"
-                                           type="submit"
-                                           class="form-control btn btn-info text-white">
+                                                type="submit"
+                                                class="form-control btn btn-info text-white">
                                             ذخیره
                                         </button>
                                     </div>
@@ -229,17 +221,30 @@
 
     <section class="container mb-5 p-2" id="send-message">
         <div class="row">
-            <div class="col-12 col-md-8">
-                <br>
-                <div class="btn btn-secondary"><strong>ورود و تکمیل اطلاعات</strong></div>
-                <p class="text-center p-3">در روزهایی که باید فاصله‌گذاری اجتماعی را رعایت کنیم و حتی در آینده‌ای که
-                    سلامتی باز هم به جهانمون برگردد، با سفارش و ارسال پیام تبریک و تسلیت از طریق پیام همدلی به صورت
-                    آنلاین در روزهای شیرین و تلخ، همراهی با عزیزانمان را به نجات زندگی کودکان مبتلا به سرطان پیوند
-                    بزنیم. (ارسال پیام از طریق ایمیل، واتساپ و پیامک) با پرداخت مبلغ ۱۰۰ هزار تومان و ارسال پیام همدلی،
-                    روزهای شاد زندگی دوستان و عزیزانتان را با کمک به ادامه زندگی کودکان مبتلا به سرطان پیوند بزنید و
-                    شادی شان را دوچندان کنید</p>
-            </div>
             <form method="post" action="{{route('message.send')}}" class="col-12">
+
+                <div class="col-12 text-center">
+                    @if(session('error') and session('error')==='message')
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $error)
+                                    <p>{{$error}}</p>
+                                @endforeach
+                            </div>
+                        @endif
+                    @endif
+
+                    <br>
+                    <div class="btn btn-secondary"><strong>ورود و تکمیل اطلاعات</strong></div>
+                    <p class="text-center p-3">در روزهایی که باید فاصله‌گذاری اجتماعی را رعایت کنیم و حتی در آینده‌ای که
+                        سلامتی باز هم به جهانمون برگردد، با سفارش و ارسال پیام تبریک و تسلیت از طریق پیام همدلی به صورت
+                        آنلاین در روزهای شیرین و تلخ، همراهی با عزیزانمان را به نجات زندگی کودکان مبتلا به سرطان پیوند
+                        بزنیم. (ارسال پیام از طریق ایمیل، واتساپ و پیامک) با پرداخت مبلغ ۱۰۰ هزار تومان و ارسال پیام
+                        همدلی،
+                        روزهای شاد زندگی دوستان و عزیزانتان را با کمک به ادامه زندگی کودکان مبتلا به سرطان پیوند بزنید و
+                        شادی شان را دوچندان کنید</p>
+                </div>
+
                 @csrf
                 <div class="col-12">
                     <h5 class="text-center">خطاب به:*</h5>
@@ -269,7 +274,7 @@
                         </div>
                     </div>
 
-                    <textarea  class="input-sp text-right" id="text" name="text" type="text" disabled> روزهاى شاد زندگی شما مایه خوشحالی من/ماست. به همین خاطر، حالا که برای حفظ سلامتی مان، نمی توانیم دور هم جمع شویم، با فرستادن این پیام از سوى   مى خواهيم همراهی خود در لحظات شاد زندگی تان را با شوق و اميد سلامتى کودکان مبتلا به سرطان پیوند بزنيم و با تامین هزینه دارو و درمان این قهرمانان کوچک سهیم شویم. تبریک ما را از طریق پیام   پذیرا باشید. به امید آنکه به زودی و با گذر از روزهاى سخت شيوع كرونا، به میمنت این اتفاق نیک دیداری تازه کنیم. باور کنید که دست هایمان از شما دور و قلب هایمان به شما نزدیک است.
+                    <textarea class="input-sp text-right" id="text" name="text" type="text" disabled> روزهاى شاد زندگی شما مایه خوشحالی من/ماست. به همین خاطر، حالا که برای حفظ سلامتی مان، نمی توانیم دور هم جمع شویم، با فرستادن این پیام از سوى   مى خواهيم همراهی خود در لحظات شاد زندگی تان را با شوق و اميد سلامتى کودکان مبتلا به سرطان پیوند بزنيم و با تامین هزینه دارو و درمان این قهرمانان کوچک سهیم شویم. تبریک ما را از طریق پیام   پذیرا باشید. به امید آنکه به زودی و با گذر از روزهاى سخت شيوع كرونا، به میمنت این اتفاق نیک دیداری تازه کنیم. باور کنید که دست هایمان از شما دور و قلب هایمان به شما نزدیک است.
                     </textarea>
                     <label for="text"></label>
 
@@ -285,7 +290,7 @@
                         روش‌های ارسال پیام را انتخاب کنید
                     </h5>
                     <div class="form-check text-center">
-                        <input type="checkbox" class="form-check-input ml-5" id="exampleCheck1">
+                        <input type="checkbox" name="sendEmail" class="form-check-input ml-5" id="exampleCheck1">
                         <label class="form-check-label mr-5" for="exampleCheck1"><strong>از طریق ایمیل</strong></label>
                     </div>
                     <br>
@@ -322,26 +327,26 @@
 
                 <div class="col-12">
                     <div class="form-check text-center">
-                        <input type="checkbox" class="form-check-input ml-5" id="exampleCheck1">
-                        <label class="form-check-label mr-5" for="exampleCheck1"><strong>از طریق پیامک</strong></label>
+                        <input type="checkbox" name="sendMessage" class="form-check-input ml-5" id="sendMessage">
+                        <label class="form-check-label mr-5" for="sendMessage"><strong>از طریق پیامک</strong></label>
                     </div>
                     <br>
 
 
-                    <input class="input-sp text-center" id="audience" name="audience" type="text"
+                    <input class="input-sp text-center" id="numberMobileOf" name="numberMobileOf" type="number"
                            placeholder="شماره تلفن خود را وارد کنید ">
-                    <label for="audience"></label>
+                    <label for="numberMobileOf"></label>
                 </div>
                 <h6 class="mb-2 mt-2 text-center">شماره تلفن همراه گیرنده پیام - حداکثر ۲ شماره تماس</h6>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <label for="mobile_to"></label>
-                        <input class="input-sp text-center" id="mobile_to" name="mobile_to[]" type="text"
+                        <label for="numberMobileTo"></label>
+                        <input class="input-sp text-center" id="numberMobileTo" name="numberMobileTo[]" type="text"
                                placeholder="-- -- ---  --09 ">
                     </div>
                     <div class="col-12 col-md-6">
-                        <label for="mobile_to"></label>
-                        <input class="input-sp text-center" id="mobile_to" name="mobile_to[]" type="text"
+                        <label for="numberMobileTo"></label>
+                        <input class="input-sp text-center" id="mobile_to" name="numberMobileTo[]" type="text"
                                placeholder="-- -- ---  --09 ">
                     </div>
                 </div>
@@ -349,7 +354,7 @@
 
                 <div class="row">
                     <div class="col-12 col-md-6 mb-4">
-                        <button class="btn btn-info">ادامه و پرداخت</button>
+                        <a class="btn btn-info text-white" onclick="proccessForm()">ادامه و پرداخت</a>
                     </div>
                 </div>
 

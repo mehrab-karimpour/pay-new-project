@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '1981cff43d4fbb16d4782bbd580a308040530567',
+    'reference' => 'fcc66b251885210b06ef7676acfb2134ba17fcd2',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -218,221 +218,239 @@ private static $installed = array (
       ),
       'reference' => '8c3d0a3f6af734494ad8f6fbbee0ba92422859f3',
     ),
+    'hekmatinasser/notowo' => 
+    array (
+      'pretty_version' => 'v1.0.1',
+      'version' => '1.0.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c51ad5dcedac966dd93ce558ac7e6a84e0020d6d',
+    ),
+    'hekmatinasser/verta' => 
+    array (
+      'pretty_version' => 'v1.11.7',
+      'version' => '1.11.7.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '608dccf9dce1aafbeb1b3fe349d9d5324f94b25d',
+    ),
     'illuminate/auth' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/broadcasting' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/bus' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/cache' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/collections' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/config' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/console' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/container' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/contracts' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/cookie' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/database' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/encryption' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/events' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/filesystem' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/hashing' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/http' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/log' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/macroable' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/mail' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/notifications' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/pagination' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/pipeline' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/queue' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/redis' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/routing' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/session' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/support' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/testing' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/translation' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/validation' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'illuminate/view' => 
     array (
       'replaced' => 
       array (
-        0 => 'v8.20.0',
+        0 => 'v8.20.1',
       ),
     ),
     'kodova/hamcrest-php' => 
@@ -453,12 +471,12 @@ private static $installed = array (
     ),
     'laravel/framework' => 
     array (
-      'pretty_version' => 'v8.20.0',
-      'version' => '8.20.0.0',
+      'pretty_version' => 'v8.20.1',
+      'version' => '8.20.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '130168c9dcd399f6b42bccfe4882b88c81a4edfe',
+      'reference' => 'b5d8573ab16027867eaa1ac148893833434f9b02',
     ),
     'laravel/laravel' => 
     array (
@@ -467,7 +485,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '1981cff43d4fbb16d4782bbd580a308040530567',
+      'reference' => 'fcc66b251885210b06ef7676acfb2134ba17fcd2',
     ),
     'laravel/sail' => 
     array (

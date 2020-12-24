@@ -14,9 +14,44 @@ class messageController extends Controller
     protected $data;
     protected $amount;
     protected $order;
+    private $terminalId;
+    private $userName;
+    private $userPassword;
 
     public function messagePay(Request $request)
     {
+
+        if ($request->sendEmail == 'on') {
+            $validator = validator($request->all(), [
+                'message_to_name' => 'required|string',
+                'message_of_name' => 'required|string',
+                'text' => 'required|string',
+                'mobile_of' => 'required|string',
+                'email_of' => 'required|email',
+                'email_to' => 'required|email',
+            ]);
+        } else if ($request->sendMessage == 'on') {
+            $validator = validator($request->all(), [
+                'message_to_name' => 'required|string',
+                'message_of_name' => 'required|string',
+                'text' => 'required|string',
+                'mobile_of' => 'required|string',
+                'numberMobileOf' => 'required|email',
+                'numberMobileTo' => 'required|email',
+            ]);
+        } else {
+            $validator = validator($request->all(), [
+                'message_to_name' => 'required|string',
+                'message_of_name' => 'required|string',
+                'text' => 'required|string',
+                'mobile_of' => 'required|string',
+                'sendMessage' => 'required',
+            ]);
+        }
+        if ($validator->fails())
+            return redirect()->back()->withErrors($validator->errors())->with('error', 'message');
+
+
         $this->data = $request;
 
         DB::transaction(function () {
@@ -163,38 +198,47 @@ class messageController extends Controller
 
     public function messageHandle($request)
     {
-        $mobiles = $request->mobile_to;
-        $smsBody = $request->text;
+
+        // check user select send using message  or send using email !
+
+        if ($request->sendMessage == "on") {
+
+            $mobiles = $request->mobile_to;
+            $smsBody = $request->text;
 
 
-        $req = [
-            'SmsBody' => $smsBody,
-            'Mobiles' => $mobiles
-        ];
+            $req = [
+                'SmsBody' => $smsBody,
+                'Mobiles' => $mobiles
+            ];
 
-        $this->url = "http://sms.parsgreen.ir";
-        $apikey = '***************************';
-        $urlpath = "Message/SendSms";
+            $this->url = "http://sms.parsgreen.ir";
+            $apikey = '***************************';
+            $urlpath = "Message/SendSms";
 
-        try {
-            $this->url = $this->url . '/Apiv2/' . $urlpath;
-            $ch = curl_init($this->url);
-            $jsonDataEncoded = json_encode($req);
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            $header = array('authorization: BASIC APIKEY:' . $apikey, 'Content-Type: application/json;charset=utf-8');
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-            $result = curl_exec($ch);
-            $res = json_decode($result);
-            curl_close($ch);
-            if ($res->R_Success == false)
-                return view('sms.error');
-            return view('sms.success');
-        } catch (Exception $ex) {
-            return '';
+            try {
+                $this->url = $this->url . '/Apiv2/' . $urlpath;
+                $ch = curl_init($this->url);
+                $jsonDataEncoded = json_encode($req);
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+                $header = array('authorization: BASIC APIKEY:' . $apikey, 'Content-Type: application/json;charset=utf-8');
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+                $result = curl_exec($ch);
+                $res = json_decode($result);
+                curl_close($ch);
+                if ($res->R_Success == false)
+                    return view('sms.error');
+                return view('sms.success');
+            } catch (Exception $ex) {
+                return '';
+            }
+        }else{
+            // user select email send
+
         }
 
     }

@@ -153,12 +153,16 @@ return [
 
     'attributes' => [
         'password' => 'رمز عبور',
+        'text'=>'متن',
         'name' => 'نام',
         'birthDate' => 'تاریخ تولد',
         'lastName' => 'نام خانوداگی',
         'nationalCode' => 'کد ملی',
         'mobile' => 'موبایل',
-
+        'sendMessage'=>'روش ارسال ',
+        'message_to_name'=>'گیرنده پیام همدلی',
+        'message_of_name'=>'فرستنده پیام همدلی',
+        'mobile_of '=>'شماره تلفن همراه نیکوکار سفارش دهنده',
     ],
 
 ];
