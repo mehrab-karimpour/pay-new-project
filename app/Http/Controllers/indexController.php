@@ -23,17 +23,10 @@ class indexController extends Controller
     protected $terminalId = '**************';
     protected $userName = '**************';
     protected $userPassword = '**************';
+    public $bankUri = "https://bpm.shaparak.ir/pgwchannel/services/pgw?wsdl";
 
 
-    public function mai()
-    {
-        $user = User::findOrFail(1);
-        Mail::send('emails.register', ['user' => $user], function ($m) use ($user) {
-            $m->from('info@alefyar.com', 'الف یار');
 
-            $m->to($user->email, $user->name)->subject('اطلاعات ثبت نام شما');
-        });
-    }
 
 
     public function mail()
@@ -42,15 +35,18 @@ class indexController extends Controller
         $to_email = 'test@gmail.com';
         $data = array('name' => "Sam Jose", "body" => "Test mail");
 
-
         $to_name = 'ali';
         $to_email = 'mehra0bkarimpour@gmail.com';
-        $data = array('name' => 'elmbvlembv', 'body' => 'renkevjbvjk');
+        $data = array('name' => 'elmbvlembv', 'body' => 'mehra0bkarimpour@gmail.commehra0bkarimpour@gmail.com');
         Mail::send('mail.index', $data, function ($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)->subject('mehra0bkarimpour@gmail.com');
             $message->from('mehra0bkarimpour@gmail.com', 'mehra0bkarimpour@gmail.com');
         });
+    }
 
+    public function cart()
+    {
+        return response()->view('cart.index');
     }
 
     public function index()
@@ -114,7 +110,7 @@ class indexController extends Controller
             'localDate' => $localDate,
             'localTime' => $localTime,
             'additionalData' => ' ',
-            'callBackUrl' => 'https://barnamenevisi.com/tutorials/laravel-bpmellat',
+            'callBackUrl' => route('verify'),
             'payerId' => 0,
         ];
 
@@ -169,7 +165,6 @@ class indexController extends Controller
                 $order->update(['status' => 1]);
                 return view('pay.success')->with([
                     'msg' => 'با تشکر تراکنش موفقیت آمیز بوده است',
-                    'downloadLink' => 'https://barnamenevisi.com/dl/' . $order->downloadLink
                 ]);
             } else {
                 //Failed verify
@@ -189,7 +184,6 @@ class indexController extends Controller
             $order->update(['status' => 0]);
             return view('pay.error')->with(['msg' => 'تراکنش ناموفق بوده پول بعد از ۷۲ ساعت بازگشت داده میشود']);
         }
-
     }
 
     protected function _getVerify($data)

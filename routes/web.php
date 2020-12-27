@@ -29,8 +29,9 @@ Route::post('/messageSend', [messageController::class, 'messagePay'])->name('mes
 
 // pay
 Route::post('pay', [indexController::class, 'pay'])->name('pay');
-Route::post('/verify', [indexController::class, 'verify'])->name('verify');
+Route::post('/verify', [indexController::class, 'verify'])->name('verify')->name('verify');
 
+Route::get('/cart', [indexController::class, 'cart'])->name('cart');
 
 Route::get('/register', [authController::class, 'register'])->name('register');
 Route::post('/register', [authController::class, 'newRegister']);
@@ -38,6 +39,7 @@ Route::get('/login', [authController::class, 'loginForm'])->name('login');
 Route::post('/login', [authController::class, 'login']);
 Route::get('/logout', [authController::class, 'logout'])->name('logout');
 
+// admin panel ...
 Route::group(['prefix' => 'panel', 'middleware' => ['role:admin']], function () {
 
     Route::get('/', [panelController::class, 'index'])->name('panel.users');

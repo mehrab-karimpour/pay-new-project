@@ -62,7 +62,7 @@ class messageController extends Controller
             try {
                 DB::insert("insert into orders (amount,status) VALUES (?,?)", [$amount, $status]);
                 $this->order = DB::table('orders')->orderByDesc('id')->first();
-                $this->amount = DB::table('amounts')->where('title', '=', 'amount-cart')->first();
+                $this->amount = DB::table('amounts')->where('title', '=', 'amount-message')->first();
                 \App\Models\Transaction::create([
                     'order_id' => $this->order->id,
                     'status' => 2,
@@ -89,7 +89,7 @@ class messageController extends Controller
             'localDate' => $localDate,
             'localTime' => $localTime,
             'additionalData' => ' ',
-            'callBackUrl' => 'https://barnamenevisi.com/tutorials/laravel-bpmellat',
+            'callBackUrl' => route('verify'),
             'payerId' => 0,
         ];
 
@@ -99,18 +99,15 @@ class messageController extends Controller
             $soapClient = new SoapClient($bankUrl);
             $res = $soapClient->bpPayrequest($data);
             // return object: return :"0,9237456928347236"
-
             $res = explode(',', $res->return);
             if ($res[0] == "0") {
                 return view('pay.success')->with(['tokenId' => $res[1]]);
             }
             return $res;
-
         } catch (\Throwable $e) {
             Log::error($e);
             return view('pay.error');
         }
-
     }
 
     public function verify(Request $request)

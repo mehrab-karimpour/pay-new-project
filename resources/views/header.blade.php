@@ -29,7 +29,7 @@
                 </li>
                 <span>|</span>
                 <li class="float-right">
-                    <a>روشهای کمک</a>
+                    <a href="/cart"> دریافت کارت</a>
                 </li>
                 <span>|</span>
                 <li class="float-right">
