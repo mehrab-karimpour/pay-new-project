@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use SoapClient;
 
 class messageController extends Controller
@@ -17,18 +18,21 @@ class messageController extends Controller
     private $terminalId;
     private $userName;
     private $userPassword;
+    protected $email_of;
 
     public function messagePay(Request $request)
     {
 
-        if ($request->sendEmail == 'on') {
+        return $this->messageHandle($request);
+
+        /*if ($request->sendEmail == 'on') {
             $validator = validator($request->all(), [
                 'message_to_name' => 'required|string',
                 'message_of_name' => 'required|string',
                 'text' => 'required|string',
                 'mobile_of' => 'required|string',
                 'email_of' => 'required|email',
-                'email_to' => 'required|email',
+                'email_to' => 'required',
             ]);
         } else if ($request->sendMessage == 'on') {
             $validator = validator($request->all(), [
@@ -107,7 +111,7 @@ class messageController extends Controller
         } catch (\Throwable $e) {
             Log::error($e);
             return view('pay.error');
-        }
+        }*/
     }
 
     public function verify(Request $request)
@@ -196,7 +200,21 @@ class messageController extends Controller
     public function messageHandle($request)
     {
 
+
         // check user select send using message  or send using email !
+        if ($request->sendEmail == "on") {
+            foreach ($request->email_to as $email) {
+                $to_name = $request->message_to_name;
+                $this->email_of = $request->email_of;
+                $data = array('name' => "Sam Jose", "body" => "Test mail");
+                $to_email = $email;
+                $data = array('name' => $to_name, 'body' => '');
+                Mail::send('mail.index', $data, function ($message) use ($to_name, $to_email) {
+                    $message->to($to_email, $to_name)->subject('ارسال پیام همدلی');
+                    $message->from($this->email_of, '');
+                });
+            }
+        }
 
         if ($request->sendMessage == "on") {
 
@@ -233,8 +251,7 @@ class messageController extends Controller
             } catch (Exception $ex) {
                 return '';
             }
-        }else{
-            // user select email send
+        } else {
 
         }
 
